@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+    <title>Test Project</title>
+<link href="css/main.css" rel="stylesheet"></head>
+<body class="users">
+<header class="users__header header-users">
+    <div class="header-users__content _container">
+        <a href="#" class="header-users__logout">Выход</a>
+    </div>
+</header>
+<div class="users__content _container">
+    <div class="users__add-user-link">
+        Добавить нового пользователя
+    </div>
+    <div class="users__table table-users">
+        <div class="table-users__head">
+            <div class="table-users__row">
+                <div class="table-users__cell">№</div>
+                <div class="table-users__cell">ФИО</div>
+                <div class="table-users__cell">Email</div>
+                <div class="table-users__cell">Адрес</div>
+                <div class="table-users__cell"></div>
+                <div class="table-users__cell"></div>
+            </div>
+        </div>
+        <div class="table-users__body">
+            <div class="table-users__row">
+                <div class="table-users__cell">1</div>
+                <div class="table-users__cell">Иванов Иван Иванович</div>
+                <div class="table-users__cell">ivan71gh@gmail.com</div>
+                <div class="table-users__cell">301258 Тульская область г.Одоев ул.Дорожная д.25</div>
+                <div class="table-users__cell change">Изменить</div>
+                <div class="table-users__cell"><input type="checkbox"></div>
+
+            </div>
+            <div class="table-users__row">
+                <div class="table-users__cell">1</div>
+                <div class="table-users__cell">Иванов Иван Иванович</div>
+                <div class="table-users__cell">ivan71gh@gmail.com</div>
+                <div class="table-users__cell">301258 Тульская область г.Одоев ул.Дорожная д.25</div>
+                <div class="table-users__cell change">Изменить</div>
+                <div class="table-users__cell"><input type="checkbox"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="user__delete-users">Удалить выбранных пользователей</div>
+</div>
+<div class="add-user">
+    <div class="add-user__content">
+        <div class="add-user__close">X</div>
+        <label for="username">ФИО</label>
+        <input type="text" id="username" name="username" placeholder="ФИО">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email">
+        <label for="address">Адрес</label>
+        <input type="text" id="address" name="address" placeholder="Адрес">
+        <div class="add-user__submit">изменить</div>
+    </div>
+</div>
+</body>
+</html>
