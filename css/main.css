@@ -204,6 +204,10 @@ body * {
   width: 100%;
   height: 100vh;
   position: relative; }
+  .index__error {
+    margin: 0 auto;
+    color: brown;
+    font-style: italic; }
 
 .index__form {
   position: absolute;

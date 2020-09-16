@@ -3,16 +3,18 @@ require_once 'database_connection.php';
 
 session_start();
 if (!empty($_POST)) {
-    $username = $_POST['username'];
+    $login = $_POST['login'];
     $password = $_POST['password'];
-    $query = sprintf("SELECT user_id, password FROM users WHERE login = '%s'", $username);
+    $query = sprintf("SELECT admin_id, password FROM admin WHERE login = '%s'", $login);
     $result = $mysqli->query($query);
     if ($result->num_rows == 1) {
         $result = $result->fetch_array();
         if (password_verify($password, $result['password'])) {
-            $_SESSION['user_id'] = $result['user_id'];
+            $_SESSION['admin_id'] = $result['admin_id'];
         } else {
-            $header_error = 'Неверный логин/пароль';
+            $error = 'Неверный логин/пароль';
         }
+    } else {
+        $error = 'Неверный логин/пароль';
     }
 }

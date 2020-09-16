@@ -1,3 +1,13 @@
+<?php
+require_once 'scripts/authorize.php';
+
+session_start();
+if (isset($_SESSION['admin_id'])){
+    header("Location:users.html");
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,10 +20,10 @@
 <body>
 <div class="index">
     <div class="_container">
-        <a href="users.html">123456789</a>
-        <form action="#" method="post" class="index__form">
+        <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post" class="index__form">
+            <div class="index__error"><?= $error; ?></div>
             <label for="login"></label>
-            <input type="text" id="login" name="login" placeholder="Логин">
+            <input type="text" id="login" name="login" placeholder="Логин" value="<?= $_POST['login'] ?>">
             <label for="password"></label>
             <input type="password" id="password" name="password" placeholder="Пароль">
             <button>войти</button>
