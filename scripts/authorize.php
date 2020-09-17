@@ -3,8 +3,8 @@ require_once 'database_connection.php';
 
 session_start();
 if (!empty($_POST)) {
-    $login = $_POST['login'];
-    $password = $_POST['password'];
+    $login = !empty($_POST['login'])?$mysqli->real_escape_string(trim(strip_tags($_POST['login']))):'';
+    $password = !empty($_POST['password'])?$mysqli->real_escape_string(trim(strip_tags($_POST['password']))):'';
     $query = sprintf("SELECT admin_id, password FROM admin WHERE login = '%s'", $login);
     $result = $mysqli->query($query);
     if ($result->num_rows == 1) {

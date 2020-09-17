@@ -52,7 +52,7 @@
     <div class="user__delete-users">Удалить выбранных пользователей</div>
 </div>
 <div class="add-user">
-    <div class="add-user__content">
+    <form class="add-user__content" id="add-user__content">
         <div class="add-user__close">X</div>
         <label for="username">ФИО</label>
         <input type="text" id="username" name="username" placeholder="ФИО">
@@ -60,8 +60,10 @@
         <input type="email" id="email" name="email" placeholder="Email">
         <label for="address">Адрес</label>
         <input type="text" id="address" name="address" placeholder="Адрес">
-        <div class="add-user__submit">изменить</div>
-    </div>
+        <button class="add-user__submit">отправить</button>
+    </form>
 </div>
+<script src="js/view.js"></script>
+<script src="js/add_user.js"></script>
 </body>
 </html>
