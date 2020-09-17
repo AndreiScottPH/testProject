@@ -15,20 +15,13 @@ addForm.submit(function (e) {
         type: 'POST',
         data: inputData
     })
-    request.fail(function (data) {
-        console.log(fail)
-        console.log(data)
-        alert('fail')
-        close();
-    })
     request.done(function (data) {
-        console.log(data)
         data = JSON.parse(data)
         console.log(data)
-        // if (data['result']) {
-        //     console.log(123)
-        //     inputs.val('');
-        // }
+        if (data) {
+            inputs.val('');
+            $('.add-user').fadeOut(200)
+            $('.index__error').html('Пользователь создан').delay(2000).fadeOut(200)
+        }
     })
-
 })
