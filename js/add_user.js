@@ -6,9 +6,7 @@ addForm.submit(function (e) {
         request.abort()
     }
     let form = $(this);
-
     let inputs = form.find('input')
-
     let inputData = form.serialize()
 
     request = $.ajax('/scripts/add_user.php', {
@@ -21,7 +19,9 @@ addForm.submit(function (e) {
         if (data) {
             inputs.val('');
             $('.add-user').fadeOut(200)
-            $('.index__error').html('Пользователь создан').delay(2000).fadeOut(200)
+            $('.index__error').show().html('Пользователь создан').delay(2000).fadeOut(200)
+        } else {
+            $('.index__error').show().html('Попробуйте еще раз').delay(2000).fadeOut(200)
         }
     })
 })

@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
     <title>Test Project</title>
-<link href="css/main.css" rel="stylesheet"></head>
+    <link href="css/main.css" rel="stylesheet">
+</head>
 <body class="users">
 <header class="users__header header-users">
     <div class="header-users__content _container">
@@ -29,26 +30,7 @@
                 <div class="table-users__cell"></div>
             </div>
         </div>
-        <div class="table-users__body">
-            <div class="table-users__row">
-                <div class="table-users__cell">1</div>
-                <div class="table-users__cell">Иванов Иван Иванович</div>
-                <div class="table-users__cell">ivan71gh@gmail.com</div>
-                <div class="table-users__cell">301258 Тульская область г.Одоев ул.Дорожная д.25</div>
-                <div class="table-users__cell change">Изменить</div>
-                <div class="table-users__cell"><input type="checkbox"></div>
-
-            </div>
-            <div class="table-users__row">
-                <div class="table-users__cell">1</div>
-                <div class="table-users__cell">Иванов Иван Иванович</div>
-                <div class="table-users__cell">ivan71gh@gmail.com</div>
-                <div class="table-users__cell">301258 Тульская область г.Одоев ул.Дорожная д.25</div>
-                <div class="table-users__cell change">Изменить</div>
-                <div class="table-users__cell"><input type="checkbox"></div>
-
-            </div>
-        </div>
+        <div class="table-users__body"></div>
     </div>
     <div class="user__delete-users">Удалить выбранных пользователей</div>
 </div>
@@ -56,15 +38,16 @@
     <form class="add-user__content" id="add-user__content">
         <div class="add-user__close">X</div>
         <label for="username">ФИО</label>
-        <input type="text" id="username" name="username" placeholder="ФИО">
+        <input type="text" id="username" name="username" placeholder="ФИО" required>
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Email">
+        <input type="email" id="email" name="email" placeholder="Email" required>
         <label for="address">Адрес</label>
-        <input type="text" id="address" name="address" placeholder="Адрес">
+        <input type="text" id="address" name="address" placeholder="Адрес" required>
         <button class="add-user__submit">отправить</button>
     </form>
 </div>
 <script src="js/view.js"></script>
 <script src="js/add_user.js"></script>
+<script src="js/listening_users.js"></script>
 </body>
 </html>
