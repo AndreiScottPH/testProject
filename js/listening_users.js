@@ -4,8 +4,6 @@ users = $.ajax('/scripts/show_users.php', {
 })
 users.done(function (data) {
     data = JSON.parse(data)
-    console.log(data)
-    console.log(data[0]['username'])
     let n = 1;
     for (let i = 1; i <= data.length; i++) {
         $('.table-users__body').append(
@@ -20,3 +18,4 @@ users.done(function (data) {
         )
     }
 })
+
