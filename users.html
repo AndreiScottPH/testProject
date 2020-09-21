@@ -16,8 +16,11 @@
     </div>
 </header>
 <div class="users__content _container">
-    <div class="users__add-user-link">
-        Добавить нового пользователя
+    <div class="users-content__header">
+        <div class="users__add-user-link">Добавить нового пользователя</div>
+        <div class="users-content__sort">
+            <i class="active">по возрастанию</i><i>/</i><i>по убыванию</i>
+        </div>
     </div>
     <div class="users__table table-users">
         <div class="table-users__head">
@@ -32,8 +35,14 @@
         </div>
         <div class="table-users__body"></div>
     </div>
+    <ul class="users__pages">
+        <li class="users__numPage active">1</li>
+        <li class="users__numPage">2</li>
+        <li class="users__numPage">3</li>
+    </ul>
     <div class="user__delete-users">Удалить выбранных пользователей</div>
 </div>
+
 <div class="add-user">
     <form class="add-user__content" id="add-user__content">
         <div class="add-user__close">X</div>

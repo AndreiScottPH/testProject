@@ -1,6 +1,38 @@
+//переменные
+let userID                      //id пользователя для редактирования информации
+let createChange                //
+let amountPages                 //количество страниц
+let page                        //номер страницы
+let sorting                     //сортировка
+
+if (!page) {
+    page = 0;
+    console.log(page)
+}
+
 $(document).ready(
-    showUsers()
+    pageList()
 )
+
+//переход по страницам
+$('.users__pages').on('click', '.users__numPage', function () {
+    page = $('.users__numPage').index(this)
+    pageList()
+})
+
+//сортировка
+$('.users-content__sort>i:first-child').click(function () {
+    sorting = ''
+    $(this).addClass('active')
+    $('.users-content__sort>i:last-child').removeClass('active')
+    pageList()
+})
+$('.users-content__sort>i:last-child').click(function () {
+    sorting = 'DESC'
+    $(this).addClass('active')
+    $('.users-content__sort>i:first-child').removeClass('active')
+    pageList()
+})
 
 //удаление пользователей
 $('.user__delete-users').click(function () {
@@ -18,8 +50,6 @@ $('.user__delete-users').click(function () {
 })
 
 //отображение информации редактируемого пользователя
-let userID
-let createChange
 $('.table-users__body').on('click', '.change', function () {
     createChange = 'change'
     $('.add-user').fadeIn(200)
@@ -77,14 +107,16 @@ function ajaxDone(data, message, addUser) {
     }
 }
 
+//отображение таблицы пользователей
 function showUsers() {
     $('.table-users__body').empty()
     $.ajax('/scripts/show_users.php', {
-        method: 'POST'
+        method: 'POST',
+        data: {page: page, sorting: sorting}
     })
         .done(function (data) {
             data = JSON.parse(data)
-            let n = 1;
+            let n = (page * 10) + 1;
             for (let i = 1; i <= data.length; i++) {
                 $('.table-users__body').append(
                     `<div class="table-users__row">
@@ -97,6 +129,26 @@ function showUsers() {
     </div>`
                 )
             }
+        })
+}
+
+//отображения количества страниц
+function pageList() {
+    $('.users__pages').empty()
+    $.ajax('/scripts/amount_pages.php', {
+        method: 'POST'
+    })
+        .done(function (data) {
+            data = JSON.parse(data)
+            amountPages = data
+            showUsers()
+            for (let i = 1; i <= amountPages; i++) {
+                let active = (i === (page + 1)) ? 'active' : ''
+                $('.users__pages').append(
+                    `<li class="users__numPage ${active}">${i}</li>`
+                )
+            }
+
         })
 }
 

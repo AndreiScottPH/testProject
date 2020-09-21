@@ -315,3 +315,45 @@ body * {
     cursor: pointer;
 }
 
+.users__pages {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.users__numPage {
+    letter-spacing: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #2268a0;
+}
+
+.users__numPage:hover {
+    text-decoration: underline;
+}
+
+.users__numPage.active {
+    font-weight: bold;
+    cursor: default;
+}
+
+.users__numPage.active:hover {
+    text-decoration: none;
+}
+
+.users-content__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.users-content__sort i {
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.users-content__sort i.active {
+    font-weight: bold;
+}
+
