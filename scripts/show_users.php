@@ -6,11 +6,11 @@ if (!isset($_SESSION['admin_id'])) {
     header("Location:index.php");
     exit();
 } else {
-    $per_page = 10;
     $sorting = 'ASC';
+    $per_page = !empty($_POST['per_page']) ? $mysqli->real_escape_string(trim(strip_tags($_POST['per_page']))) : '';;
     $num_page = !empty($_POST['page']) ? $mysqli->real_escape_string(trim(strip_tags($_POST['page']))) : '';
     $num_page = $num_page * $per_page;
-    $sorting = !empty($_POST['sorting'])?$mysqli->real_escape_string(trim(strip_tags($_POST['sorting']))) : 'ASC';
+    $sorting = !empty($_POST['sorting']) ? $mysqli->real_escape_string(trim(strip_tags($_POST['sorting']))) : 'ASC';
 
     $query = sprintf("SELECT user_id, username, email, address FROM users ORDER BY user_id %s LIMIT %d, %d",
         $sorting, $num_page, $per_page);

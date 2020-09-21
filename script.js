@@ -2,13 +2,14 @@
 let userID                      //id пользователя для редактирования информации
 let createChange                //
 let amountPages                 //количество страниц
+let amountUsers                 //количество пользователей
 let page                        //номер страницы
+let perPage                     //количество пользователей на странице
+perPage = 5
 let sorting                     //сортировка
 
-if (!page) {
+if (!page)
     page = 0;
-    console.log(page)
-}
 
 $(document).ready(
     pageList()
@@ -31,6 +32,29 @@ $('.users-content__sort>i:last-child').click(function () {
     sorting = 'DESC'
     $(this).addClass('active')
     $('.users-content__sort>i:first-child').removeClass('active')
+    pageList()
+})
+
+//количество пользователей на странице
+$('.users__per-page>i:nth-child(1)').click(function () {
+    perPage = 10
+    $(this).addClass('active')
+    $('.users__per-page>i:nth-child(3)').removeClass('active ')
+    $('.users__per-page>i:nth-child(5)').removeClass('active ')
+    pageList()
+})
+$('.users__per-page>i:nth-child(3)').click(function () {
+    perPage = 20
+    $(this).addClass('active')
+    $('.users__per-page>i:nth-child(1)').removeClass('active ')
+    $('.users__per-page>i:nth-child(5)').removeClass('active ')
+    pageList()
+})
+$('.users__per-page>i:nth-child(5)').click(function () {
+    perPage = 50
+    $(this).addClass('active')
+    $('.users__per-page>i:nth-child(3)').removeClass('active ')
+    $('.users__per-page>i:nth-child(1)').removeClass('active ')
     pageList()
 })
 
@@ -112,35 +136,47 @@ function showUsers() {
     $('.table-users__body').empty()
     $.ajax('/scripts/show_users.php', {
         method: 'POST',
-        data: {page: page, sorting: sorting}
+        data: {page: page, sorting: sorting, per_page: perPage}
     })
         .done(function (data) {
             data = JSON.parse(data)
-            let n = (page * 10) + 1;
+            let n
+            if (!sorting)
+                n = (page * perPage)
+            if (sorting === 'DESC')
+                n = (amountUsers + 1) - (page * perPage)
             for (let i = 1; i <= data.length; i++) {
+                let dataUsers = data[i - 1]
+                if (!sorting)
+                    n++
+                if (sorting === 'DESC')
+                    n--
                 $('.table-users__body').append(
                     `<div class="table-users__row">
-        <div class="table-users__cell">${n++}</div>
-        <div class="table-users__cell">${data[i - 1]['username']}</div>
-        <div class="table-users__cell">${data[i - 1]['email']}</div>
-        <div class="table-users__cell">${data[i - 1]['address']}</div>
-        <div class="table-users__cell change" id="${data[i - 1]['user_id']}">Изменить</div>
-        <div class="table-users__cell"><input type="checkbox" id="${data[i - 1]['user_id']}"></div>
+        <div class="table-users__cell">${n}</div>
+        <div class="table-users__cell">${dataUsers['username']}</div>
+        <div class="table-users__cell">${dataUsers['email']}</div>
+        <div class="table-users__cell">${dataUsers['address']}</div>
+        <div class="table-users__cell change" id="${dataUsers['user_id']}">Изменить</div>
+        <div class="table-users__cell"><input type="checkbox" id="${dataUsers['user_id']}"></div>
     </div>`
                 )
             }
         })
 }
 
+
 //отображения количества страниц
 function pageList() {
     $('.users__pages').empty()
     $.ajax('/scripts/amount_pages.php', {
-        method: 'POST'
+        method: 'POST',
+        data: {per_page: perPage}
     })
         .done(function (data) {
             data = JSON.parse(data)
-            amountPages = data
+            amountPages = data['pages']
+            amountUsers = data['users']
             showUsers()
             for (let i = 1; i <= amountPages; i++) {
                 let active = (i === (page + 1)) ? 'active' : ''

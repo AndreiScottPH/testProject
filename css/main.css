@@ -357,3 +357,18 @@ body * {
     font-weight: bold;
 }
 
+.users__per-page {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.users__per-page i {
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.users__per-page i.active {
+    font-weight: bold;
+    cursor: default;
+}
