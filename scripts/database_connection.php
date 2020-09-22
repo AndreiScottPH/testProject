@@ -2,8 +2,5 @@
 
 require_once 'app_config.php';
 
-$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
-
-//if ($mysqli->connect_errno) {
-//    handle_error("Ошибка", $mysqli->connect_error);
-//}
+$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);;
+$mysqli->query("SET NAMES utf8");

@@ -7,7 +7,7 @@ if (!isset($_SESSION['admin_id'])) {
     exit();
 } else {
 
-    $per_page = !empty($_POST['per_page']) ? $mysqli->real_escape_string(trim(strip_tags($_POST['per_page']))) : '';;
+    $per_page = !empty($_POST['per_page']) ? $mysqli->real_escape_string(trim(strip_tags($_POST['per_page']))) : '';
 
     $query = sprintf("SELECT COUNT(*) FROM users");
     $result = $mysqli->query($query);

@@ -7,12 +7,8 @@ define("PASSWORD", "root");
 define("DATABASE", "testproject_interlabs");
 define("DEV", true);
 
-
-//function handle_error($user_error, $dev_error)
-//{
-//    session_start();
-//    $_SESSION['user_error'] = $user_error;
-//    $_SESSION['dev_error'] = $dev_error;
-//    header("Location:/error.php");
-//    exit();
-//}
+//define("HOST", "localhost");
+//define("USER", "andreialbm");
+//define("PASSWORD", "PfUABPGEx39x8q2");
+//define("DATABASE", "andreialbm");
+//define("DEV", false);
