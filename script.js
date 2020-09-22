@@ -4,12 +4,14 @@ let createChange                //
 let amountPages                 //количество страниц
 let amountUsers                 //количество пользователей
 let page                        //номер страницы
-let perPage                     //количество пользователей на странице
-perPage = 5
-let sorting                     //сортировка
-
 if (!page)
     page = 0;
+let perPage                     //количество пользователей на странице
+perPage = 10
+let sorting                     //сортировка возрастание/убывание
+let sortName                    //сортировка по имени
+if (!sortName)
+    sortName = 'user_id'
 
 $(document).ready(
     pageList()
@@ -21,7 +23,7 @@ $('.users__pages').on('click', '.users__numPage', function () {
     pageList()
 })
 
-//сортировка
+//сортировка возрастание/убывание
 $('.users-content__sort>i:first-child').click(function () {
     sorting = ''
     $(this).addClass('active')
@@ -32,6 +34,18 @@ $('.users-content__sort>i:last-child').click(function () {
     sorting = 'DESC'
     $(this).addClass('active')
     $('.users-content__sort>i:first-child').removeClass('active')
+    pageList()
+})
+
+//сортировка по имени
+$('.table-users__cell:nth-child(2)').click(function () {
+    sortName = 'username'
+    $(this).addClass('active')
+    pageList()
+})
+$('.table-users__cell:nth-child(1)').click(function () {
+    sortName = 'user_id'
+    $('.table-users__cell:nth-child(2)').removeClass('active')
     pageList()
 })
 
@@ -114,7 +128,24 @@ $('.add-user__content').submit(function (e) {
         })
 })
 
-//функции
+//проверка email на доступность
+$('#email').on('blur', function () {
+    let email = $(this).val()
+    $.ajax('/scripts/available_email.php', {
+        method: 'POST',
+        data: {email: email}
+    })
+        .done(function (data) {
+            data = JSON.parse(data)
+            console.log(data)
+            $('.add-user__message').html(data).delay(2000)
+            setTimeout(function () {
+                $('.add-user__message').empty()
+            }, 2000)
+        })
+})
+
+//обработка ответа сервера
 function ajaxDone(data, message, addUser) {
     data = JSON.parse(data)
     console.log(data)
@@ -136,7 +167,7 @@ function showUsers() {
     $('.table-users__body').empty()
     $.ajax('/scripts/show_users.php', {
         method: 'POST',
-        data: {page: page, sorting: sorting, per_page: perPage}
+        data: {page: page, sorting: sorting, sort_name: sortName, per_page: perPage}
     })
         .done(function (data) {
             data = JSON.parse(data)
@@ -164,7 +195,6 @@ function showUsers() {
             }
         })
 }
-
 
 //отображения количества страниц
 function pageList() {

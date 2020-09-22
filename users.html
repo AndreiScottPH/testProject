@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-            crossorigin="anonymous"></script>
     <title>Test Project</title>
     <link href="css/main.css" rel="stylesheet">
 </head>
@@ -31,8 +29,8 @@
     <div class="users__table table-users">
         <div class="table-users__head">
             <div class="table-users__row">
-                <div class="table-users__cell">№</div>
-                <div class="table-users__cell">ФИО</div>
+                <div class="table-users__cell">№ &#8645</div>
+                <div class="table-users__cell">ФИО &#8645</div>
                 <div class="table-users__cell">Email</div>
                 <div class="table-users__cell">Адрес</div>
                 <div class="table-users__cell"></div>
@@ -52,6 +50,7 @@
 <div class="add-user">
     <form class="add-user__content" id="add-user__content">
         <div class="add-user__close">X</div>
+        <div class="add-user__message"></div>
         <label for="username">ФИО</label>
         <input type="text" id="username" name="username" placeholder="ФИО" required>
         <label for="email">Email</label>
