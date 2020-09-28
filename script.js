@@ -170,6 +170,7 @@ function showUsers() {
     })
         .done(function (data) {
             data = JSON.parse(data)
+            console.log(data)
             let n
             if (!sorting)
                 n = (page * perPage)
@@ -204,6 +205,7 @@ function pageList() {
     })
         .done(function (data) {
             data = JSON.parse(data)
+            console.log(data)
             amountPages = data['pages']
             amountUsers = data['users']
             showUsers()

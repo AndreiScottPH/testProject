@@ -9,4 +9,4 @@ $num_page = $num_page * $per_page;
 $sortingDirect = !empty($_POST['sorting']) ? 'DESC' : 'ASC';
 $sort_name = !empty($_POST['sort_name']) ? $_POST['sort_name'] : 'user_id';
 
-$queryBuilder->showUsers($sort_name, $sortingDirect, $num_page, $per_page);
+$qer=$queryBuilder->showUsers($sort_name, $sortingDirect, $num_page, $per_page);

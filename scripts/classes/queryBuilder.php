@@ -96,16 +96,13 @@ class queryBuilder
 
     public function showUsers($sort_name, $sortingDirect, $num_page, $per_page)
     {
-        $sql = "SELECT user_id, username, email, address FROM users ORDER BY {$sort_name} {$sortingDirect} LIMIT :startLimit, :perPage";
-        $stn = $this->pdo->prepare($sql);
-        $stn->bindParam(':startLimit', $num_page, PDO::PARAM_INT);
-        $stn->bindParam(':perPage', $per_page, PDO::PARAM_INT);
-        $stn->execute();
+        $sql = "SELECT user_id, username, email, address FROM users ORDER BY {$sort_name} {$sortingDirect} LIMIT {$num_page}, {$per_page}";
+        $stn = $this->pdo->query($sql);
         if ($stn->rowCount() > 0) {
-            $result = $stn->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stn->fetchAll();
             echo json_encode($result);
         } else {
-            echo json_encode('Данных нет');
+            echo json_encode(false);
         }
     }
 
