@@ -148,7 +148,6 @@ $('#email').on('blur', function () {
 //обработка ответа сервера
 function ajaxDone(data, message, addUser) {
     data = JSON.parse(data)
-    console.log(data)
     if (data) {
         createChange = ''
         if (addUser) {

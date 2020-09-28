@@ -1,6 +1,9 @@
 <?php
+require 'autoload.php';
 
-require_once 'app_config.php';
+define("DEV", true);
+if(DEV==false)
+    error_reporting(0);
 
-$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);;
-$mysqli->query("SET NAMES utf8");
+$pdo = new PDO("mysql:host=127.0.0.1;dbname=testproject_interlabs;charset=utf8", 'root', 'root');
+$queryBuilder = new queryBuilder($pdo);

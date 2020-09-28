@@ -1,11 +1,11 @@
 <?php
-require_once 'scripts/authorize.php';
+require_once 'scripts/database_connection.php';
 
-session_start();
-if (isset($_SESSION['admin_id'])){
-    header("Location:users.html");
-    exit();
-}
+$authorize = new authorize();
+
+$authorize->isSession();
+$authorize->authorizeUser($pdo, $_POST);
+
 ?>
 
 <!doctype html>
